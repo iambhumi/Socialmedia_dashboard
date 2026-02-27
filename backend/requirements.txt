@@ -1,0 +1,14 @@
+
+***
+
+## PART 3 — Create `requirements.txt`
+
+Create `backend/requirements.txt`:
+
+```txt
+flask
+flask-cors
+google-genai
+fpdf2
+requests
+pandas

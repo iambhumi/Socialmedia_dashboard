@@ -1,0 +1,152 @@
+[
+  {
+    "username": "arivupro_official",
+    "platform": "instagram",
+    "type": "main",
+    "followers": 15200,
+    "following": 320,
+    "total_posts": 245,
+    "avg_likes": 480,
+    "avg_comments": 32,
+    "avg_shares": 18,
+    "engagement_rate": 3.5,
+    "posting_frequency": 1.2,
+    "content_types": {
+      "Reels": 45,
+      "Posts": 30,
+      "Carousels": 20,
+      "Stories": 5
+    },
+    "follower_growth": [
+      {"month": "Sep 2025", "followers": 12000},
+      {"month": "Oct 2025", "followers": 12800},
+      {"month": "Nov 2025", "followers": 13500},
+      {"month": "Dec 2025", "followers": 14200},
+      {"month": "Jan 2026", "followers": 14900},
+      {"month": "Feb 2026", "followers": 15200}
+    ],
+    "best_posting_time": "6PM - 8PM",
+    "top_content_type": "Reels",
+    "bio": "South India's No.1 Commerce Academy | CA | CS | ACCA | CMA"
+  },
+  {
+    "username": "caclasses_india",
+    "platform": "instagram",
+    "type": "competitor",
+    "followers": 18500,
+    "following": 410,
+    "total_posts": 310,
+    "avg_likes": 620,
+    "avg_comments": 45,
+    "avg_shares": 25,
+    "engagement_rate": 4.1,
+    "posting_frequency": 1.5,
+    "content_types": {
+      "Reels": 55,
+      "Posts": 25,
+      "Carousels": 15,
+      "Stories": 5
+    },
+    "follower_growth": [
+      {"month": "Sep 2025", "followers": 14000},
+      {"month": "Oct 2025", "followers": 15200},
+      {"month": "Nov 2025", "followers": 16100},
+      {"month": "Dec 2025", "followers": 17000},
+      {"month": "Jan 2026", "followers": 17900},
+      {"month": "Feb 2026", "followers": 18500}
+    ],
+    "best_posting_time": "7PM - 9PM",
+    "top_content_type": "Reels",
+    "bio": "India's Premier CA Coaching | Exam Tips | Results"
+  },
+  {
+    "username": "financeacademy_in",
+    "platform": "instagram",
+    "type": "competitor",
+    "followers": 12800,
+    "following": 280,
+    "total_posts": 198,
+    "avg_likes": 310,
+    "avg_comments": 22,
+    "avg_shares": 14,
+    "engagement_rate": 2.7,
+    "posting_frequency": 0.9,
+    "content_types": {
+      "Reels": 35,
+      "Posts": 40,
+      "Carousels": 20,
+      "Stories": 5
+    },
+    "follower_growth": [
+      {"month": "Sep 2025", "followers": 11000},
+      {"month": "Oct 2025", "followers": 11400},
+      {"month": "Nov 2025", "followers": 11800},
+      {"month": "Dec 2025", "followers": 12100},
+      {"month": "Jan 2026", "followers": 12500},
+      {"month": "Feb 2026", "followers": 12800}
+    ],
+    "best_posting_time": "12PM - 2PM",
+    "top_content_type": "Posts",
+    "bio": "Finance & Commerce Education | CA | CMA"
+  },
+  {
+    "username": "csexamcoach",
+    "platform": "instagram",
+    "type": "competitor",
+    "followers": 9600,
+    "following": 190,
+    "total_posts": 156,
+    "avg_likes": 270,
+    "avg_comments": 19,
+    "avg_shares": 11,
+    "engagement_rate": 3.1,
+    "posting_frequency": 0.8,
+    "content_types": {
+      "Reels": 40,
+      "Posts": 35,
+      "Carousels": 20,
+      "Stories": 5
+    },
+    "follower_growth": [
+      {"month": "Sep 2025", "followers": 7800},
+      {"month": "Oct 2025", "followers": 8200},
+      {"month": "Nov 2025", "followers": 8700},
+      {"month": "Dec 2025", "followers": 9100},
+      {"month": "Jan 2026", "followers": 9400},
+      {"month": "Feb 2026", "followers": 9600}
+    ],
+    "best_posting_time": "5PM - 7PM",
+    "top_content_type": "Reels",
+    "bio": "CS Exam Preparation | Study Tips | Mock Tests"
+  },
+  {
+    "username": "acca_mentors",
+    "platform": "instagram",
+    "type": "competitor",
+    "followers": 21000,
+    "following": 500,
+    "total_posts": 380,
+    "avg_likes": 750,
+    "avg_comments": 58,
+    "avg_shares": 35,
+    "engagement_rate": 4.8,
+    "posting_frequency": 1.8,
+    "content_types": {
+      "Reels": 60,
+      "Posts": 20,
+      "Carousels": 15,
+      "Stories": 5
+    },
+    "follower_growth": [
+      {"month": "Sep 2025", "followers": 16000},
+      {"month": "Oct 2025", "followers": 17200},
+      {"month": "Nov 2025", "followers": 18400},
+      {"month": "Dec 2025", "followers": 19300},
+      {"month": "Jan 2026", "followers": 20200},
+      {"month": "Feb 2026", "followers": 21000}
+    ],
+    "best_posting_time": "8PM - 10PM",
+    "top_content_type": "Reels",
+    "bio": "ACCA Global Mentorship | Pass First Attempt"
+  }
+]
