@@ -9,4 +9,4 @@ try:
     db.command("ping")
     print("✅ Local MongoDB connected!")
 except Exception as e:
-    print(f"❌ Failed: {e}")
+    print(f"Failed: {e}")

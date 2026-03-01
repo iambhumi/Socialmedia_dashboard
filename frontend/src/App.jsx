@@ -115,7 +115,39 @@ export default function App() {
     setInsightsLoading(false);
   };
 
-  const exportPDF = () => window.open(`${API}/export/pdf`, '_blank');
+  const exportPDF = async () => {
+  try {
+    const allProfiles = mainProfile ? [mainProfile, ...competitors] : [];
+
+    const res = await fetch(`${API}/export/pdf`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        profiles: allProfiles,
+        insights: insights || ''
+      })
+    });
+
+    if (!res.ok) {
+      const err = await res.json();
+      alert('PDF error: ' + err.error);
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'ArivuPro_Analytics_Report.pdf';
+    a.click();
+    window.URL.revokeObjectURL(url);
+
+  } catch (e) {
+    alert('Failed to export PDF');
+    console.error(e);
+  }
+};
+
   const tabs = ['overview', 'competitors', 'charts', 'insights'];
 
   return (

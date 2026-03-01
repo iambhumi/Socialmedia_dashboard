@@ -202,25 +202,28 @@ def remove_profile(platform, username):
 
 
 # Export PDF — uses live DB data if available, else mock
-@app.route('/api/export/pdf', methods=['GET'])
+@app.route('/api/export/pdf', methods=['POST'])
 def export_pdf():
     try:
-        # Try to get live saved profiles from MongoDB first
-        saved = get_all_profiles()
+        
+        body = request.get_json(silent=True) or {}
+        profiles = body.get('profiles', [])
+        insights_text = body.get('insights', '')
+        
+        # Fallback to mock if no live data sent
+        if not profiles:
+            profiles = load_data()
+        
+        if not profiles:
+            return jsonify({"error": "No profile data available"}), 400
 
-        if saved and len(saved) >= 1:
-            main = next((p for p in saved if p.get('type') == 'main'), saved[0])
-            competitors = [p for p in saved if p.get('type') == 'competitor']
-        else:
-            # Fallback to mock data
-            mock = load_data()
-            main = next((p for p in mock if p['type'] == 'main'), None)
-            competitors = [p for p in mock if p['type'] == 'competitor']
-            saved = mock
+        # Generate insights if not provided
+        if not insights_text:
+            main = next((p for p in profiles if p.get('type') == 'main'), profiles[0])
+            competitors = [p for p in profiles if p.get('type') == 'competitor']
+            insights_text = generate_insights(main, competitors)
 
-        insights_data = generate_insights(main, competitors)
-        path = generate_pdf_report(saved, insights_data)
-
+        path = generate_pdf_report(profiles, insights_text)
         return send_file(
             path,
             as_attachment=True,
@@ -228,7 +231,11 @@ def export_pdf():
             mimetype='application/pdf'
         )
     except Exception as e:
+        print(f"PDF error: {e}")
         return jsonify({"error": str(e)}), 500
+           
+
+        
 
 
 #  CSV EXPORT ROUTE
