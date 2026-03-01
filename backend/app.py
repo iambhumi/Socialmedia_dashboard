@@ -27,9 +27,6 @@ def load_data():
         return json.load(f)
 
 
-# ════════════════════════════════════════════════════════════════
-#  MOCK DATA ROUTES (fallback / demo data)
-# ════════════════════════════════════════════════════════════════
 
 # GET all mock profiles
 @app.route('/api/profiles', methods=['GET'])
@@ -70,7 +67,7 @@ def get_comparison():
     return jsonify(comparison)
 
 
-# ════════════════════════════════════════════════════════════════
+
 #  LIVE SCRAPING ROUTES
 
 # Scrape Instagram live
@@ -78,7 +75,7 @@ def get_comparison():
 def scrape_instagram_profile(username):
     result = scrape_instagram(username)
     if result:
-        save_profile(result)     # ✅ Save to MongoDB
+        save_profile(result)     #  Save to MongoDB
         return jsonify(result)
     return jsonify({"error": "Failed to scrape — check username or API key"}), 400
 
@@ -92,7 +89,7 @@ def scrape_linkedin_profile():
         return jsonify({"error": "LinkedIn URL required"}), 400
     result = scrape_linkedin(url)
     if result:
-        save_profile(result)     # ✅ Save to MongoDB
+        save_profile(result)     # Save to MongoDB
         return jsonify(result)
     return jsonify({"error": "Failed to scrape — check URL or API key"}), 400
 
@@ -116,8 +113,8 @@ def scrape_competitor():
             return jsonify({"error": "Unsupported platform"}), 400
 
         if result:
-            result['type'] = 'competitor'    # ✅ Mark as competitor
-            save_profile(result)             # ✅ Save to MongoDB
+            result['type'] = 'competitor'    #  Mark as competitor
+            save_profile(result)             #  Save to MongoDB
             return jsonify({"success": True, "data": result})
         else:
             return jsonify({"error": "Could not fetch competitor data"}), 404
@@ -143,7 +140,7 @@ def scrape_and_analyze():
         if not result:
             return jsonify({"error": f"Failed to scrape profile {p['id']}"}), 400
 
-        save_profile(result)     # ✅ Save to MongoDB
+        save_profile(result)     
         scraped.append(result)
 
     if len(scraped) < 2:
@@ -159,8 +156,8 @@ def scrape_and_analyze():
     })
 
 
-# ════════════════════════════════════════════════════════════════
-#  AI INSIGHTS ROUTE
+
+
 
 # POST — Generate Gemini AI insights
 @app.route('/api/insights', methods=['POST'])
@@ -176,7 +173,7 @@ def get_insights():
     return jsonify({"success": True, "insights": insights})
 
 
-# ════════════════════════════════════════════════════════════════
+
 #  DATABASE ROUTES
 
 # GET all profiles saved in MongoDB
@@ -200,7 +197,7 @@ def remove_profile(platform, username):
     return jsonify({"success": True, "message": f"Deleted {username} from {platform}"})
 
 
-# ════════════════════════════════════════════════════════════════
+# 
 #  EXPORT ROUTE
 
 
@@ -234,7 +231,6 @@ def export_pdf():
         return jsonify({"error": str(e)}), 500
 
 
-# ════════════════════════════════════════════════════════════════
 #  CSV EXPORT ROUTE
 
 @app.route('/api/export/csv', methods=['POST'])
@@ -264,6 +260,6 @@ def export_csv():
     }
 
 
-# ════════════════════════════════════════════════════════════════
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

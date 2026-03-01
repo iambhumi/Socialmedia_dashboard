@@ -8,9 +8,9 @@ ENV_PATH = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path=ENV_PATH, override=True)
 
 MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
-print(f"🔍 MONGO_URI being used = {MONGO_URI}")
+print(f" MONGO_URI being used = {MONGO_URI}")
 
-# ── Try to connect — but don't crash if it fails ─────────────
+# ── Try to connect 
 try:
     client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=3000)
     db = client["Social_dashboard"]
@@ -18,9 +18,9 @@ try:
     profiles_collection = db["profiles"]
     snapshots_collection = db["snapshots"]
     DB_CONNECTED = True
-    print("✅ MongoDB connected!")
+    print(" MongoDB connected!")
 except Exception as e:
-    print(f"⚠️ MongoDB not connected — running without DB: {e}")
+    print(f" MongoDB not connected — running without DB: {e}")
     DB_CONNECTED = False
     profiles_collection = None
     snapshots_collection = None
@@ -28,7 +28,7 @@ except Exception as e:
 
 def save_profile(profile_data):
     if not DB_CONNECTED or profiles_collection is None:
-        print("⚠️ DB not available — skipping save")
+        print(" DB not available — skipping save")
         return None
     try:
         profile_data["updated_at"] = datetime.utcnow().isoformat()
@@ -50,10 +50,10 @@ def save_profile(profile_data):
             "date": datetime.utcnow().strftime("%b %Y")
         }
         snapshots_collection.insert_one(snapshot)
-        print(f"✅ Saved {profile_data['username']} to DB")
+        print(f" Saved {profile_data['username']} to DB")
         return result.upserted_id
     except Exception as e:
-        print(f"⚠️ Save failed — skipping: {e}")
+        print(f" Save failed — skipping: {e}")
         return None
 
 
@@ -63,7 +63,7 @@ def get_all_profiles():
     try:
         return list(profiles_collection.find({}, {"_id": 0}))
     except Exception as e:
-        print(f"⚠️ get_all_profiles failed: {e}")
+        print(f" get_all_profiles failed: {e}")
         return []
 
 
@@ -76,7 +76,7 @@ def get_profile(username, platform):
             {"_id": 0}
         )
     except Exception as e:
-        print(f"⚠️ get_profile failed: {e}")
+        print(f" get_profile failed: {e}")
         return None
 
 
@@ -89,7 +89,7 @@ def get_growth_history(username, platform):
             {"_id": 0, "followers": 1, "date": 1, "timestamp": 1}
         ).sort("timestamp", 1).limit(12))
     except Exception as e:
-        print(f"⚠️ get_growth_history failed: {e}")
+        print(f" get_growth_history failed: {e}")
         return []
 
 
@@ -101,7 +101,7 @@ def delete_profile(username, platform):
         snapshots_collection.delete_many({"username": username, "platform": platform})
         return True
     except Exception as e:
-        print(f"⚠️ delete_profile failed: {e}")
+        print(f" delete_profile failed: {e}")
         return False
 
 
@@ -111,5 +111,5 @@ def get_competitors():
     try:
         return list(profiles_collection.find({"type": "competitor"}, {"_id": 0}))
     except Exception as e:
-        print(f"⚠️ get_competitors failed: {e}")
+        print(f" get_competitors failed: {e}")
         return []

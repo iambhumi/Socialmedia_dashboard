@@ -11,7 +11,7 @@ RAPIDAPI_KEY = os.getenv("RAPIDAPI_KEY")
 def scrape_instagram(username):
     headers = {
         "X-RapidAPI-Key": RAPIDAPI_KEY,
-        "X-RapidAPI-Host": "instagram-public-bulk-scraper.p.rapidapi.com"  # ✅ fixed typo
+        "X-RapidAPI-Host": "instagram-public-bulk-scraper.p.rapidapi.com"  
     }
 
     # Attempt 1 — User Info Web (with Posts)
@@ -115,7 +115,7 @@ def build_instagram_profile(user, username):
     posting_frequency = round(posts / account_age_days, 1) if posts else 0
 
     uname = user.get("username") or username
-    print(f"✅ Built profile — @{uname}, {followers} followers")
+    print(f"Built profile — @{uname}, {followers} followers")
 
     return {
         "username": uname,
@@ -155,7 +155,7 @@ def build_instagram_mock(username):
     avg_comments = int(avg_likes * random.uniform(0.02, 0.08))
     engagement = round((avg_likes + avg_comments) / max(followers, 1) * 100, 2)
 
-    print(f"✅ Built mock profile — @{username}, {followers} followers")
+    print(f" Built mock profile — @{username}, {followers} followers")
 
     return {
         "username": username,

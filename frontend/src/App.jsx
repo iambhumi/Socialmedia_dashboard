@@ -110,7 +110,7 @@ export default function App() {
       const data = await res.json();
       setInsights(data.insights || 'No insights returned.');
     } catch {
-      setInsights('❌ Error fetching insights.');
+      setInsights(' Error fetching insights.');
     }
     setInsightsLoading(false);
   };
@@ -167,9 +167,9 @@ export default function App() {
           <p className="text-center text-xs mt-2 text-gray-400">
             {isLiveMode
               ? liveCompetitors.length > 0
-                ? `✅ Live — @${mainProfile.username} + ${liveCompetitors.length} competitor(s) | scrape more to add`
-                : `✅ Live — @${mainProfile.username} is main | scrape another profile to add a competitor`
-              : '📁 Demo data — scrape a profile to switch to live mode'}
+                ? ` Live — @${mainProfile.username} + ${liveCompetitors.length} competitor(s) | scrape more to add`
+                : ` Live — @${mainProfile.username} is main | scrape another profile to add a competitor`
+              : ' Demo data — scrape a profile to switch to live mode'}
           </p>
         )}
 
@@ -177,7 +177,7 @@ export default function App() {
 
         <div className="my-6 border-t border-gray-200" />
 
-        {/* ══ OVERVIEW ═══════════════════════════════════ */}
+        {/* ══ OVERVIEW*/}
         {activeTab === 'overview' && mainProfile && (
           <div>
             {/* Scraped profiles row */}
@@ -233,7 +233,7 @@ export default function App() {
           </div>
         )}
 
-        {/* ══ COMPETITORS ════════════════════════════════ */}
+        {/* ══ COMPETITORS  */}
         {activeTab === 'competitors' && (
           <div>
             <h2 className="text-xl font-bold mb-4 text-gray-700">
@@ -257,7 +257,7 @@ export default function App() {
           </div>
         )}
 
-        {/* ══ CHARTS ═════════════════════════════════════ */}
+        {/* ══ CHARTS  */}
         {activeTab === 'charts' && (
           <div className="space-y-6">
             {comparison.length === 0
@@ -280,14 +280,14 @@ export default function App() {
           </div>
         )}
 
-        {/* ══ AI INSIGHTS ════════════════════════════════ */}
+        {/* ══ AI INSIGHTS  */}
         {activeTab === 'insights' && (
           <div>
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-bold text-gray-700">🤖 Gemini AI Insights</h2>
               <button onClick={fetchInsights}
                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm transition-all">
-                🔄 Refresh Insights
+                 Refresh Insights
               </button>
             </div>
             <div className="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl">

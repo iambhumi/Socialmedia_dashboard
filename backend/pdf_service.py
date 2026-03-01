@@ -5,27 +5,27 @@ from datetime import datetime
 def clean_text(text):
     """Remove or replace all non-latin-1 characters"""
     replacements = {
-        '\u2014': '-',   # em dash
-        '\u2013': '-',   # en dash
-        '\u2018': "'",   # left single quote
-        '\u2019': "'",   # right single quote
-        '\u201c': '"',   # left double quote
-        '\u201d': '"',   # right double quote
-        '\u2022': '-',   # bullet
-        '\u25cf': '-',   # filled circle
-        '\u2026': '...', # ellipsis
-        '\u00e9': 'e',   # é
-        '\u00e8': 'e',   # è
-        '\u00ea': 'e',   # ê
-        '\u00fc': 'u',   # ü
-        '\u00f6': 'o',   # ö
-        '\u00e4': 'a',   # ä
+        '\u2014': '-',   
+        '\u2013': '-',  
+        '\u2018': "'",  
+        '\u2019': "'",   
+        '\u201c': '"',  
+        '\u201d': '"',  
+        '\u2022': '-',   
+        '\u25cf': '-',   
+        '\u2026': '...',
+        '\u00e9': 'e',   
+        '\u00e8': 'e',  
+        '\u00ea': 'e',   
+        '\u00fc': 'u',   
+        '\u00f6': 'o', 
+        '\u00e4': 'a',   
         '\u2019': "'",
-        '\u2764': '<3',  # heart
+        '\u2764': '<3',  
         '\u00b0': ' degrees',
-        '\u20b9': 'Rs',  # rupee sign
-        '**': '',        # markdown bold
-        '__': '',        # markdown underline
+        '\u20b9': 'Rs', 
+        '**': '',       
+        '__': '',       
     }
     for char, replacement in replacements.items():
         text = text.replace(char, replacement)

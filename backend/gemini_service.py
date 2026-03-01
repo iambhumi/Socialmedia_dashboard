@@ -43,7 +43,7 @@ def generate_insights(main_profile, competitors):
     for c in competitors:
         competitor_summary += f"\n- @{c['username']}: {c.get('followers',0):,} followers, {c.get('engagement_rate',0)}% engagement, top content: {c.get('top_content_type','N/A')}"
 
-    # ✅ Dynamic prompt based on real data
+   
     prompt = f"""
 You are a social media growth expert analyzing a {platform} profile.
 
