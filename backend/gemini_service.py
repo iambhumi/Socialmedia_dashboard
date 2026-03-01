@@ -1,6 +1,11 @@
 from google import genai
+import os
+from dotenv import load_dotenv
 
-client = genai.Client(api_key="AIzaSyC3K6g5V7dSDKEQTlU3YthMeQ0yRH3sMmU")
+load_dotenv()
+client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+
+
 
 def get_fallback_insights(main_profile, competitors):
     # Find best competitor
@@ -30,76 +35,59 @@ GROWTH STRATEGY:
 
 
 def generate_insights(main_profile, competitors):
+    platform = main_profile.get("platform", "instagram")
+    username = main_profile.get("username", "User")
+    niche = "social media"
+
     competitor_summary = ""
     for c in competitors:
-        competitor_summary += f"""
-        - {c['username']}: {c['followers']} followers,
-          {c['engagement_rate']}% engagement,
-          top content: {c['top_content_type']}
-        """
+        competitor_summary += f"\n- @{c['username']}: {c.get('followers',0):,} followers, {c.get('engagement_rate',0)}% engagement, top content: {c.get('top_content_type','N/A')}"
 
+    # ✅ Dynamic prompt based on real data
     prompt = f"""
-    You are a social media growth expert for an EdTech company in India.
+You are a social media growth expert analyzing a {platform} profile.
 
-    Analyze this Instagram profile and compare with competitors:
+MAIN PROFILE: @{username}
+- Followers: {main_profile.get('followers', 0):,}
+- Engagement Rate: {main_profile.get('engagement_rate', 0)}%
+- Top Content Type: {main_profile.get('top_content_type', 'N/A')}
+- Posting Frequency: {main_profile.get('posting_frequency', 0)} posts/day
+- Best Posting Time: {main_profile.get('best_posting_time', 'N/A')}
+- Platform: {platform}
 
-    MAIN PROFILE: {main_profile['username']}
-    - Followers: {main_profile['followers']}
-    - Engagement Rate: {main_profile['engagement_rate']}%
-    - Top Content Type: {main_profile['top_content_type']}
-    - Posting Frequency: {main_profile['posting_frequency']} posts/day
-    - Best Posting Time: {main_profile['best_posting_time']}
+COMPETITORS:
+{competitor_summary if competitor_summary else "No competitors added yet."}
 
-    COMPETITORS:
-    {competitor_summary}
+Give exactly this structure:
+STRENGTHS:
+- (2 specific strengths based on actual data)
 
-    Give exactly this structure:
-    STRENGTHS:
-    - (2 specific strengths)
+COMPETITORS DOING BETTER:
+- (2 specific points, or note if no competitors)
 
-    COMPETITORS DOING BETTER:
-    - (2 specific points)
+CONTENT GAPS:
+- (2 actionable suggestions for {platform})
 
-    CONTENT GAPS:
-    - (2 specific suggestions)
+BEST TIME TO POST:
+- (specific time recommendation for {platform})
 
-    BEST TIME TO POST:
-    - (specific recommendation)
+CONTENT RECOMMENDATION:
+- (specific content format recommendation)
 
-    CONTENT RECOMMENDATION:
-    - (specific recommendation)
+GROWTH STRATEGY:
+- (1 clear actionable strategy)
 
-    GROWTH STRATEGY:
-    - (1 overall strategy)
-
-    Be specific, actionable, and relevant to EdTech/Commerce education niche.
-    """
-
+Be specific, data-driven, and platform-aware.
+"""
     try:
-        # Try models in order until one works
-        models_to_try = [
-            "gemini-1.5-flash",
-            "gemini-1.5-flash-8b",
-            "gemini-1.0-pro"
-        ]
-        
-        response_text = None
+        models_to_try = ["gemini-1.5-flash", "gemini-1.5-flash-8b", "gemini-1.0-pro"]
         for model_name in models_to_try:
             try:
-                response = client.models.generate_content(
-                    model=model_name,
-                    contents=prompt
-                )
-                response_text = response.text
-                break
+                response = client.models.generate_content(model=model_name, contents=prompt)
+                if response.text:
+                    return response.text
             except Exception:
                 continue
-        
-        if response_text:
-            return response_text
-        else:
-            return get_fallback_insights(main_profile, competitors)
-            
-    except Exception as e:
         return get_fallback_insights(main_profile, competitors)
-
+    except Exception:
+        return get_fallback_insights(main_profile, competitors)
