@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 ENV_PATH = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path=ENV_PATH, override=True)
 
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://localhost:27017/")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://bhumi:bhumi1234@cluster0.p4fkm.mongodb.net/social_dashboard?retryWrites=true&w=majority&appName=Cluster0")
 print(f" MONGO_URI being used = {MONGO_URI}")
 
 # ── Try to connect 
