@@ -10,8 +10,7 @@ import {
   CompetitorRadarChart
 } from './components/Charts';
 
-const API = 'http://localhost:5000/api';
-
+const API = import.meta.env.VITE_API_URL || '/api';
 export default function App() {
 
   const [profiles, setProfiles]               = useState([]);

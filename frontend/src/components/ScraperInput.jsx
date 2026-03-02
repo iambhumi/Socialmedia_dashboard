@@ -21,10 +21,10 @@ const ScraperInput = ({ onResult }) => {
 
       if (platform === 'instagram') {
         res = await fetch(
-          `http://localhost:5000/api/scrape/instagram/${input.trim()}`
-        );
+          `/api/scrape/instagram/${input.trim()}`
+       );
       } else {
-        res = await fetch('http://localhost:5000/api/scrape/linkedin', {
+        res = await fetch('/api/scrape/linkedin',  {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ url: input.trim() })
